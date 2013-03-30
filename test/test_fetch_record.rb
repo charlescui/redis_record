@@ -28,7 +28,7 @@ puts User.trunk
 
 Benchmark.bm(15) do |x|
 	x.report('save') {10000.times{User.new.save}}
-	x.report('transaction') {User.transaction{10000.times{User.new}}}
+	x.report('transaction') {User.transaction{10000.times{User.new.save}}}
 	x.report('all') {User.all}
 	x.report('trunk') {User.trunk}
 end
